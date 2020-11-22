@@ -22,6 +22,10 @@ function loadPage(page) {
 
 function pageLoaded(page) {
     // Do additional stuff for each page to make buttons work etc.
+    switch (page) {
+        case 'home':
+            console.log('yeap');
+    }
 }
 
 function goTo(page) {
