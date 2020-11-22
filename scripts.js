@@ -29,9 +29,12 @@ function pageLoaded(page) {
             }
             break;
         case 'more-info':
-            document.querySelector("#content > button").onclick = function() {
+            document.querySelector("#content > button:nth-child(1)").onclick = function() {
                 var win = window.open('https://github.com/Hattorius/simple-javascript-routing', '_blank');
                 win.focus();
+            }
+            document.querySelector("#content > button:nth-child(3)").onclick = function() {
+                goTo('home');
             }
         case '404':
             document.querySelector("#content > button").onclick = function() {
