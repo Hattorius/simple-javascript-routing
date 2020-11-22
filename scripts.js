@@ -1,8 +1,8 @@
 
-var pages = ['home', 'more-info', '404'];
-var pagesContent = {};
+var pages = ['home', 'more-info', '404']; // Define pages available
+var pagesContent = {}; // Do not touch
 
-function preLoadPages() {
+function preLoadPages() { // Preload pages
     console.log("Preloading pages");
     pages.forEach(page => {
         console.log("Preloading "+page);
@@ -14,7 +14,7 @@ function preLoadPages() {
     console.log("Preloading pages => success");
 }
 
-function loadPage(page) {
+function loadPage(page) { // Put page content into the body
     var pageHolder = document.querySelector("body div#content");
     document.querySelector("body").id = page;
     pageHolder.innerHTML = pagesContent[page];
@@ -24,11 +24,23 @@ function pageLoaded(page) {
     // Do additional stuff for each page to make buttons work etc.
     switch (page) {
         case 'home':
-            console.log('yeap');
+            document.querySelector("#content > button").onclick = function() {
+                goTo('more-info');
+            }
+            break;
+        case 'more-info':
+            document.querySelector("#content > button").onclick = function() {
+                var win = window.open('https://github.com/Hattorius/simple-javascript-routing', '_blank');
+                win.focus();
+            }
+        case '404':
+            document.querySelector("#content > button").onclick = function() {
+                goTo('home');
+            }
     }
 }
 
-function goTo(page) {
+function goTo(page) { // Pushing states, if page not found show 404
     window.history.pushState({}, '', page);
     if (pages.includes(page)) {
         loadPage(page);
@@ -39,10 +51,19 @@ function goTo(page) {
     }
 }
 
-document.body.onload = function() {
+document.body.onload = function() { // Whenever body is ready, get url and load page
     preLoadPages()
     var sPath = window.location.pathname;
-    console.log("page => "+sPath)
+    if (typeof sPath !== "undefined" && sPath != "/") {
+        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+        goTo(sPage)
+    } else {
+        goTo('home')
+    }
+}
+
+window.onpopstate = function() { // If user clicks back, also update page
+    var sPath = window.location.pathname;
     if (typeof sPath !== "undefined" && sPath != "/") {
         var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
         goTo(sPage)
