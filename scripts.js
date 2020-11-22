@@ -15,6 +15,7 @@ function loadPage(page) { // Put page content into the body
     var pageHolder = document.querySelector("body div#content");
     document.querySelector("body").id = page;
     pageHolder.innerHTML = pagesContent[page];
+    document.body.id = page;
 }
 
 function pageLoaded(page) {
