@@ -3,15 +3,12 @@ var pages = ['home', 'more-info', '404']; // Define pages available
 var pagesContent = {}; // Do not touch
 
 function preLoadPages() { // Preload pages
-    console.log("Preloading pages");
     pages.forEach(page => {
-        console.log("Preloading "+page);
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET","pages/"+page+".html",false);
         xmlHttp.send(null);
         pagesContent[page] = xmlHttp.responseText;
     });
-    console.log("Preloading pages => success");
 }
 
 function loadPage(page) { // Put page content into the body
