@@ -1,5 +1,5 @@
 
-var pages = ['home', '404'];
+var pages = ['home', 'more-info', '404'];
 var pagesContent = {};
 
 function preLoadPages() {
