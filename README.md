@@ -1,7 +1,6 @@
 
 # simple-javascript-routing
 Simple routing using Javascript
-See a little example here: [example](https://hattorius.github.io/)
 
 ## How to use
 ### Step 1
